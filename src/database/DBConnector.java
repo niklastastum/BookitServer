@@ -490,6 +490,11 @@ public class DBConnector {
                 try {
                     userFound = new User();
                     userFound.setUserID(resultSet.getInt("UserID"));
+                    userFound.setFirstName(resultSet.getString("First_Name"));
+                    userFound.setLastName(resultSet.getString("Last_Name"));
+                    userFound.setUsername(resultSet.getString("Username"));
+                    userFound.setEmail(resultSet.getString("Email"));
+                    userFound.setPassword(resultSet.getString("Password"));
 
                 } catch (SQLException e) {
 
@@ -502,7 +507,6 @@ public class DBConnector {
         }
 
         return userFound;
-
     }
 
     public User getUserFromToken(String token) throws SQLException {
