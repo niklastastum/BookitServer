@@ -5,14 +5,10 @@ public class User {
     String firstName, lastName, userName, email, password;
     Boolean userType;
 
-    public User(){
+    public User() {
 
     }
 
-   /* public User(int userID){
-        this.userID = userID;
-
-    }*/
     public User(String firstName, String lastName, String userName, String email, String password, Boolean userType) {
         this.firstName = firstName;
         this.lastName = lastName;

@@ -6,6 +6,7 @@ import Encrypters.*;
 import com.google.gson.Gson;
 import controllers.TokenController;
 import controllers.UserController;
+import model.Token;
 import model.User;
 import model.UserLogin;
 
@@ -110,14 +111,18 @@ public class UsersEndpoint  {
     @POST
     @Produces("application/json")
     public Response create(String data) throws Exception {
-        String s = new Gson().fromJson(data,String.class);
-        String decrypt = Crypter.encryptDecryptXOR(s);
-        if (controller.addUser(decrypt)) {
+
+//        String s = new Gson().fromJson(data,String.class);
+//        String decrypt = Crypter.encryptDecryptXOR(s);
+
+        if (controller.addUser(data)) {
             //demo to check if it returns this on post.
             return Response
                     .status(200)
+                    .header("Access-Control-Allow-Origin", "*")
                     .entity("{\"message\":\"Success! User added\"}")
                     .build();
+
         }
         else return Response.status(400).entity("{\"message\":\"failed\"}").build();
     }
@@ -146,19 +151,29 @@ public class UsersEndpoint  {
         decrypt = Crypter.encryptDecryptXOR(decrypt);
 
         UserLogin userLogin = new Gson().fromJson(decrypt, UserLogin.class);
-
-        String token = tokenController.authenticate(userLogin.getUsername(), userLogin.getPassword());
+        Token token = tokenController.authenticate(userLogin.getUsername(), userLogin.getPassword());
 
         if (token != null) {
             //demo to check if it returns this on post.
             return Response
-                .status(200)
-                .entity(new Gson().toJson(token))
-                .build();
+                    .status(200)
+                    .entity(new Gson().toJson(token))
+                    .build();
         } else return Response
-            .status(401)
-            .build();
+                .status(401)
+                .build();
     }
+
+//        if (token != null) {
+//            //demo to check if it returns this on post.
+//            return Response
+//                .status(200)
+//                .entity(new Gson().toJson(token))
+//                .build();
+//        } else return Response
+//            .status(401)
+//            .build();
+//    }
 
     @POST
     @Path("/logout")

@@ -2,6 +2,7 @@ package controllers;
 
 import Encrypters.*;
 import database.DBConnector;
+import model.Token;
 import model.User;
 
 import java.sql.SQLException;
@@ -13,17 +14,21 @@ public class TokenController {
 
     DBConnector db = new DBConnector();
 
-    public String authenticate(String username, String password) throws SQLException {
+    public Token authenticate(String username, String password) throws SQLException {
+
         // Authenticate the user using the credentials provided
 
-        String token;
+//        String token;
+
+        Token token = new Token();
 
         User foundUser = db.authenticate(username, password);
         if (foundUser != null) {
 
-            token = Crypter.buildToken("abcdefghijklmnopqrstuvxyz1234567890@&%!?", 25);
+            token.setToken(Crypter.buildToken("abcdefghijklmnopqrstuvxyz1234567890@&%!?", 25));
+            token.setUser(foundUser);
 
-            db.addToken(token, foundUser.getUserID());
+            db.addToken(token.getToken(), foundUser.getUserID());
 
         } else {
             token = null;
