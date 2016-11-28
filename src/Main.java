@@ -1,10 +1,12 @@
 import admin.AdminView;
 import config.Config;
 
+import java.sql.SQLException;
+
 /**
  * Created by Tastum on 28/11/2016.
  */
-public class main {
+public class Main {
 
     public static void main (String [] args) {
 
@@ -16,7 +18,11 @@ public class main {
 
         AdminView adminView = new AdminView();
 
-        adminView.menu();
+        try {
+            adminView.menu();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
