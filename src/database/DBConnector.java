@@ -64,7 +64,7 @@ public class DBConnector {
         ResultSet resultSet = null;
 
         try {
-            PreparedStatement getUsers = conn.prepareStatement("SELECT * FROM Users ");
+            PreparedStatement getUsers = conn.prepareStatement("SELECT * FROM Users WHERE Deleted != 1");
             resultSet = getUsers.executeQuery();
 
             while (resultSet.next()) {

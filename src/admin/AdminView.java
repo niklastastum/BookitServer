@@ -39,6 +39,12 @@ public class AdminView {
                         System.out.println("Velkommen til brugeroprettelse!\n");
                         createUser();
                         break;
+                    case 3:
+                        System.out.println("Du kan nu slette en bruger\n");
+                        viewAllUsers();
+                        System.out.println("Indtast venligst ID-nummeret på brugeren, der ønskes slettet: ");
+                        deleteUser();
+                        break;
                     default:
                         System.out.print("You had one job..\n");
                         break;
@@ -56,7 +62,7 @@ public class AdminView {
         //Header for the view of users
         System.out.printf("%-15s %-15s %-15s %-15s %-25s %-15s\n", "Bruger ID: ", "Brugernavn: ", "Fornavn: ", "Efternavn: ", "Email: ", "Admin-status: ");
         for (User user : users) {
-            System.out.printf("%-15d %-15s %-15s %-15s %-25s %-15b\n", user.getUserID(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUserType());
+            System.out.printf("%-15d %-15s %-15s %-15s %-25s %-15b\n", user.getUserID(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUserType() + "\n\n");
         }
     }
 
@@ -99,8 +105,22 @@ public class AdminView {
 
         try {
             db.addUser(user);
-            System.out.print("Brugeren er oprettet");
+            System.out.print("Brugeren er oprettet\n\n");
         } catch (Exception e) {
+            System.out.print("Noget gik galt..");
+            e.printStackTrace();
+        }
+
+    }
+
+    public void deleteUser() {
+
+        int delete = input.nextInt();
+
+        try {
+            db.deleteUser(delete);
+            System.out.print("Brugeren er slettet\n\n");
+        } catch (SQLException e) {
             System.out.print("Noget gik galt..");
             e.printStackTrace();
         }
