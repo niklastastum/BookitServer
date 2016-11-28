@@ -6,6 +6,7 @@ import model.User;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -18,24 +19,36 @@ public class AdminView {
 
     public void menu() throws SQLException {
 
-        System.out.print("Velkommen til adminmenuen \nDu har nu følgende muligheder:\n");
-        System.out.print("1. Vis alle systemts brugere\n");
-        System.out.print("2. Opret en bruger\n");
-        System.out.print("3. Slet en bruger\n");
-        System.out.print("4. Opret en ny bog til systemet\n");
+        do {
+            try {
 
-        int choice = input.nextInt();
+                System.out.print("Velkommen til adminmenuen \nDu har nu følgende muligheder:\n");
+                System.out.print("1. Vis alle systemts brugere\n");
+                System.out.print("2. Opret en bruger\n");
+                System.out.print("3. Slet en bruger\n");
+                System.out.print("4. Opret en ny bog til systemet\n");
 
-        switch(choice) {
-            case 1:
-                System.out.print("Her er alle brugere: \n");
-                viewAllUsers();
+                int choice = input.nextInt();
 
-                break;
-            default:
-                System.out.print("You had one job..");
-        }
+                switch (choice) {
+                    case 1:
+                        System.out.print("Her er alle brugere: \n");
+                        viewAllUsers();
+                        break;
+                    case 2:
+                        System.out.println("Velkommen til brugeroprettelse!\n");
+                        createUser();
+                        break;
+                    default:
+                        System.out.print("You had one job..\n");
+                        break;
+                }
 
+            } catch (InputMismatchException e) {
+                System.out.println("Indtast venligst et tal..\n");
+                input.nextLine();
+            }
+        } while (true);
     }
 
     public void viewAllUsers() throws SQLException {
@@ -49,7 +62,48 @@ public class AdminView {
 
     public void createUser() throws SQLException {
 
+        System.out.println("Indtast venligst den nye brugers fornavn: ");
+        String firstName = input.next();
+        System.out.println("Indtast venligst den nye brugers efternavn: ");
+        String lastName = input.next();
+        System.out.println("Indtast venligst den nye brugers brugernavn: ");
+        String username = input.next();
+        System.out.println("Indtast venligst den nye brugers email: ");
+        String email = input.next();
+        System.out.println("Indtast venligst den nye brugers adgangskode: ");
+        String password = input.next();
 
+        System.out.println("Skal den nye bruger have admin-rettigheder? (ja/nej)");
+        Boolean admin = false;
+        String choice = input.next();
+
+        switch (choice) {
+            case "ja":
+                admin = true;
+                break;
+            case "nej":
+                admin = false;
+                break;
+            default:
+                System.out.println("Indtast venligst enten 'ja' eller 'nej': ");
+        }
+
+        User user = new User();
+
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setUserType(admin);
+
+        try {
+            db.addUser(user);
+            System.out.print("Brugeren er oprettet");
+        } catch (Exception e) {
+            System.out.print("Noget gik galt..");
+            e.printStackTrace();
+        }
 
     }
 }
