@@ -420,10 +420,12 @@ public class DBConnector {
     }
 
     public boolean addCurriculumBook(int curriculumID, String data) throws SQLException {
+//      public boolean addCurriculumBook(int curriculumID, Book b) throws SQLException {
         int id;
         PreparedStatement addBookStatement = conn.prepareStatement("INSERT INTO Books (Title, Version, ISBN, PriceAB, PriceSAXO, PriceCDON, Publisher, Author) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
         Book b = new Gson().fromJson(data, Book.class);
+
         try {
             addBookStatement.setString(1, b.getTitle());
             addBookStatement.setInt(2, b.getVersion());

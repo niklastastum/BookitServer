@@ -2,6 +2,8 @@ package admin;
 
 import config.Config;
 import database.DBConnector;
+import model.Book;
+import model.Curriculum;
 import model.User;
 
 import java.sql.SQLException;
@@ -45,6 +47,15 @@ public class AdminView {
                         System.out.println("Indtast venligst ID-nummeret på brugeren, der ønskes slettet: ");
                         deleteUser();
                         break;
+                    case 4:
+                        System.out.println("Du har nu mulighed for at oprette en bog. \n");
+                        System.out.println("Først skal du vælge hvilken pensumliste, bogen skal tilhøre: \n");
+                        viewAllCurriculums();
+                        System.out.println("Indtast venligst ID-nummeret for den ønskede pensumliste: ");
+                        int curriculumID = input.nextInt();
+                        System.out.println("Nu kan du fortsætte med oprettelsen af bogen: ");
+                        createBook();
+                        break;
                     default:
                         System.out.print("You had one job..\n");
                         break;
@@ -62,7 +73,7 @@ public class AdminView {
         //Header for the view of users
         System.out.printf("%-15s %-15s %-15s %-15s %-25s %-15s\n", "Bruger ID: ", "Brugernavn: ", "Fornavn: ", "Efternavn: ", "Email: ", "Admin-status: ");
         for (User user : users) {
-            System.out.printf("%-15d %-15s %-15s %-15s %-25s %-15b\n", user.getUserID(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUserType() + "\n\n");
+            System.out.printf("%-15d %-15s %-15s %-15s %-25s %-15b\n", user.getUserID(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUserType());
         }
     }
 
@@ -125,5 +136,46 @@ public class AdminView {
             e.printStackTrace();
         }
 
+    }
+
+    public void createBook() {
+
+        System.out.println("Angiv venligst forlaget: ");
+        String publisher = input.next();
+        System.out.println("Angiv venligst titlen: ");
+        String title = input.next();
+        System.out.println("Angiv venligst forfatteren: ");
+        String author = input.next();
+        System.out.println("Angiv venligst versionen: ");
+        int version = input.nextInt();
+        System.out.println("Angiv venligst ISBN-nummer: ");
+        double ISBN = input.nextDouble();
+        System.out.println("Angiv venligst pris hos Academic Books: ");
+        double priceAB = input.nextDouble();
+        System.out.println("Angiv venligst pris hos SAXO.dk: ");
+        double priceSAXO = input.nextDouble();
+        System.out.println("Angiv venligst pris hos CDON.com: ");
+        double priceCDON = input.nextDouble();
+
+        Book book = new Book();
+
+        book.setPublisher(publisher);
+        book.setTitle(title);
+        book.setAuthor(author);
+        book.setVersion(version);
+        book.setISBN(ISBN);
+        book.setPriceAB(priceAB);
+        book.setPriceSAXO(priceSAXO);
+        book.setPriceCDON(priceCDON);
+
+
+    }
+
+    public void viewAllCurriculums() {
+        ArrayList<Curriculum> curriculums = db.getCurriculums();
+        System.out.printf("%-20s %-15s %-15s %-15s\n", "Pensumliste ID: ", "Skole: ", "Uddannelse: ", "Semester: ");
+        for (Curriculum curriculum : curriculums) {
+            System.out.printf("%-20d %-15s %-15s %-15s\n", curriculum.getCurriculumID(), curriculum.getSchool(), curriculum.getEducation(), curriculum.getSemester());
+        }
     }
 }
