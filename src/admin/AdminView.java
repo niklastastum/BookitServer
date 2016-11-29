@@ -49,12 +49,8 @@ public class AdminView {
                         break;
                     case 4:
                         System.out.println("Du har nu mulighed for at oprette en bog. \n");
-                        System.out.println("Først skal du vælge hvilken pensumliste, bogen skal tilhøre: \n");
-                        viewAllCurriculums();
-                        System.out.println("Indtast venligst ID-nummeret for den ønskede pensumliste: ");
-                        int curriculumID = input.nextInt();
-                        System.out.println("Nu kan du fortsætte med oprettelsen af bogen: ");
-                        createBook();
+                        db.addCurriculumBook(viewAllCurriculums(), createBook());
+                        System.out.println("Din er nu blevet oprettet til den valgte pensumliste");
                         break;
                     default:
                         System.out.print("You had one job..\n");
@@ -138,7 +134,7 @@ public class AdminView {
 
     }
 
-    public void createBook() {
+    public Book createBook() {
 
         System.out.println("Angiv venligst forlaget: ");
         String publisher = input.next();
@@ -157,25 +153,23 @@ public class AdminView {
         System.out.println("Angiv venligst pris hos CDON.com: ");
         double priceCDON = input.nextDouble();
 
-        Book book = new Book();
+        Book book = new Book(publisher, title, author, version, ISBN, priceAB, priceSAXO, priceCDON);
 
-        book.setPublisher(publisher);
-        book.setTitle(title);
-        book.setAuthor(author);
-        book.setVersion(version);
-        book.setISBN(ISBN);
-        book.setPriceAB(priceAB);
-        book.setPriceSAXO(priceSAXO);
-        book.setPriceCDON(priceCDON);
-
-
+        return book;
     }
 
-    public void viewAllCurriculums() {
+    public int viewAllCurriculums() {
+
+        System.out.println("Først skal du vælge hvilken pensumliste, bogen skal tilhøre: \n");
+
         ArrayList<Curriculum> curriculums = db.getCurriculums();
         System.out.printf("%-20s %-15s %-15s %-15s\n", "Pensumliste ID: ", "Skole: ", "Uddannelse: ", "Semester: ");
         for (Curriculum curriculum : curriculums) {
             System.out.printf("%-20d %-15s %-15s %-15s\n", curriculum.getCurriculumID(), curriculum.getSchool(), curriculum.getEducation(), curriculum.getSemester());
         }
+        System.out.println("Indtast venligst ID-nummeret for den ønskede pensumliste: ");
+        int curriculumID = input.nextInt();
+
+        return curriculumID;
     }
 }

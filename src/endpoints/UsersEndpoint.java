@@ -164,21 +164,13 @@ public class UsersEndpoint  {
                 .build();
     }
 
-//        if (token != null) {
-//            //demo to check if it returns this on post.
-//            return Response
-//                .status(200)
-//                .entity(new Gson().toJson(token))
-//                .build();
-//        } else return Response
-//            .status(401)
-//            .build();
-//    }
-
     @POST
     @Path("/logout")
     public Response logout (String data) throws SQLException {
-        if(tokenController.deleteToken(data)) {
+
+        Token token = new Gson().fromJson(data, Token.class);
+
+        if(tokenController.deleteToken(token.getToken())) {
             return Response
                     .status(200)
                     .entity("Success!")

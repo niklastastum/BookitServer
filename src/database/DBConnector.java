@@ -1,5 +1,6 @@
 package database;
 
+import Encrypters.Digester;
 import com.google.gson.Gson;
 import config.Config;
 import model.Book;
@@ -419,12 +420,12 @@ public class DBConnector {
         return true;
     }
 
-    public boolean addCurriculumBook(int curriculumID, String data) throws SQLException {
-//      public boolean addCurriculumBook(int curriculumID, Book b) throws SQLException {
+//    public boolean addCurriculumBook(int curriculumID, String data) throws SQLException {
+      public boolean addCurriculumBook(int curriculumID, Book b) throws SQLException {
         int id;
         PreparedStatement addBookStatement = conn.prepareStatement("INSERT INTO Books (Title, Version, ISBN, PriceAB, PriceSAXO, PriceCDON, Publisher, Author) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
-        Book b = new Gson().fromJson(data, Book.class);
+//        Book b = new Gson().fromJson(data, Book.class);
 
         try {
             addBookStatement.setString(1, b.getTitle());
@@ -483,7 +484,7 @@ public class DBConnector {
         try {
             PreparedStatement authenticate = conn.prepareStatement("select * from Users where username = ? AND Password = ?");
             authenticate.setString(1, username);
-            authenticate.setString(2, password);
+            authenticate.setString(2, Digester.hashWithSalt(password));
 
 
             resultSet = authenticate.executeQuery();
