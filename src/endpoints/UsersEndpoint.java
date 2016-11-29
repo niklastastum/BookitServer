@@ -83,9 +83,9 @@ public class UsersEndpoint  {
 
         if (user != null){
             String s = new Gson().fromJson(data,String.class);
-            String decrypt = Crypter.encryptDecryptXOR(s);
+//            String decrypt = Crypter.encryptDecryptXOR(s);
             if (controller.getUser(id) != null) {
-                if (controller.editUser(id, decrypt)) {
+                if (controller.editUser(id, s)) {
                     return Response
                             .status(200)
                             .entity("{\"message\":\"Success! User edited\"}")

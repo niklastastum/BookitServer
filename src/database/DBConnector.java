@@ -139,7 +139,8 @@ public class DBConnector {
             editUserStatement.setString(2, u.getLastName());
             editUserStatement.setString(3, u.getUsername());
             editUserStatement.setString(4, u.getEmail());
-            editUserStatement.setBoolean(5, u.getUserType());
+            editUserStatement.setString(5, Digester.hashWithSalt(u.getPassword()));
+//            editUserStatement.setBoolean(5, u.getUserType());
             editUserStatement.setInt(6, id);
 
             editUserStatement.executeUpdate();
