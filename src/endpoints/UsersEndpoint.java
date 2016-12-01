@@ -119,7 +119,6 @@ public class UsersEndpoint  {
             //demo to check if it returns this on post.
             return Response
                     .status(200)
-                    .header("Access-Control-Allow-Origin", "*")
                     .entity("{\"message\":\"Success! User added\"}")
                     .build();
 

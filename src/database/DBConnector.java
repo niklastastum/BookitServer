@@ -483,7 +483,7 @@ public class DBConnector {
         User userFound = null;
 
         try {
-            PreparedStatement authenticate = conn.prepareStatement("select * from Users where username = ? AND Password = ?");
+            PreparedStatement authenticate = conn.prepareStatement("select * from Users where Username = ? AND Password = ? AND Deleted = 0");
             authenticate.setString(1, username);
             authenticate.setString(2, Digester.hashWithSalt(password));
 
