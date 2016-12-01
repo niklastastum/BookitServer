@@ -82,10 +82,10 @@ public class UsersEndpoint  {
         User user = tokenController.getUserFromTokens(authToken);
 
         if (user != null){
-            String s = new Gson().fromJson(data,String.class);
+            //String s = new Gson().fromJson(data,String.class);
 //            String decrypt = Crypter.encryptDecryptXOR(s);
             if (controller.getUser(id) != null) {
-                if (controller.editUser(id, s)) {
+                if (controller.editUser(id, data)) {
                     return Response
                             .status(200)
                             .entity("{\"message\":\"Success! User edited\"}")
