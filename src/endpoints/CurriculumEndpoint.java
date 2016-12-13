@@ -43,7 +43,6 @@ public class CurriculumEndpoint {
             return Response
                     .status(200)
                     .entity(new Gson().toJson(Crypter.encryptDecryptXOR(new Gson().toJson(curriculumController.getCurriculumBooks(curriculumID)))))
-//                    .header("Access-Control-Allow-Origin", "*") //Skal måske være der
                     .build(); //kør
         } else {
             return Response
@@ -67,7 +66,6 @@ public class CurriculumEndpoint {
             return Response
                     .status(200)
                     .entity(new Gson().toJson(Crypter.encryptDecryptXOR(new Gson().toJson(curriculumController.getCurriculums()))))
-                    .header("Access-Control-Allow-Origin", "*") //Skal måske være der
                     .build(); //kør
         } else {
             return Response
