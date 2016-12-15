@@ -8,7 +8,8 @@ import java.util.Random;
 
 public class Crypter {
 
-
+//  XOR-krypteringsmetoden. Lånt fra andet sted
+//    Copyright: https://github.com/KyleBanks/XOREncryption/blob/master/Java%20(Android%20compatible)/XOREncryption.java
     public static String encryptDecryptXOR(String input) {
         char[] key = {'T', 'C', 'P'}; //Dette kan være alle andre bogstaver end a,b og c.
         StringBuilder output = new StringBuilder();
@@ -20,18 +21,8 @@ public class Crypter {
 
         return output.toString();
     }
-//
-//    public static String xor() {
-//
-//        //Eksempel på en hard-codet String, der bliver krypteret
-//        String communication = "test123";
-//
-//        // Returnerer den krypterede værdi.
-//        return Crypter.encryptDecryptXOR(communication) + "\n" + Crypter.encryptDecryptXOR
-//                (Crypter.encryptDecryptXOR(communication));
-//    }
 
-
+//  Metoden til at oprette en token. Kriterier til denne står i TokenController.java
     public static String buildToken(String chars, int length) {
         Random rand = new Random();
         StringBuilder buf = new StringBuilder();

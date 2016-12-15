@@ -5,6 +5,8 @@ package model;
  */
 public class Curriculum {
 
+    //    Model klasse for Curriculum.
+
     String school, education;
     int semester, curriculumID;
 

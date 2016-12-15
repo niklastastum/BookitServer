@@ -69,11 +69,8 @@ VALUES
 	(21,'Matematisk analyse',5,9788205301399,489,473,440,'Gyldendal Akademisk','Knut Sydsæter','2016-10-17 15:37:00',0,'2016-10-17 16:07:36'),
 	(22,'Mathematical Statistics with Applications',1,9780495385080,549,530.09,536,'NULLCengage Learning, Inc','William Mendenhall, Richard L. Scheaffer & Dennis O. Wackerly\r','2016-10-17 15:37:00',0,'2016-10-17 16:07:36'),
 	(23,'Introductory Statistics with R',2,9780387790534,399,376.79,417,'Springer-Verlag New York Inc.','Peter Dalgaard','2016-10-17 15:37:00',0,'2016-10-17 16:07:36'),
-	(24,'Accounting for Decision Making and Control',9,9781259255007,499,498,551,'McGraw-Hill Education - Europe','Jerold L. Zimmerman','2016-10-17 15:37:00',0,'2016-10-17 16:07:36'),
-	(25,'Min bog',3,0,469,450,516,'Morten','Forfatter','2016-10-19 07:14:45',0,'2016-10-19 07:14:45'),
-	(26,'Min bog',3,0,469,450,516,'Morten','Forfatter','2016-10-19 07:24:15',0,'2016-10-19 07:24:15'),
-	(27,'Min bog',3,0,469,450,516,'Morten','Forfatter','2016-10-19 07:25:57',0,'2016-10-19 07:25:57'),
-	(28,'Min bog',3,0,469,450,516,'Morten','Forfatter','2016-10-19 07:28:01',0,'2016-10-19 07:28:01');
+	(24,'Accounting for Decision Making and Control',9,9781259255007,499,498,551,'McGraw-Hill Education - Europe','Jerold L. Zimmerman','2016-10-17 15:37:00',0,'2016-10-17 16:07:36');
+
 
 /*!40000 ALTER TABLE `Books` ENABLE KEYS */;
 UNLOCK TABLES;

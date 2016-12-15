@@ -15,6 +15,7 @@ public class UserController {
   Gson gson;
   DBConnector db = new DBConnector();
 
+//Fungerer som de andre controller-klasser
 
   public UserController() {
     this.gson = new Gson();

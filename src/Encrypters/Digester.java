@@ -7,6 +7,10 @@ import java.security.MessageDigest;
  */
 
 public class Digester {
+
+//    Denne klasse bruges til at håndtere hashing.
+//    Alt hvad der bliver hashet bliver der også tilføjet en SALT-værdi til.
+
     private final static String SALT = "82efbcc2cc33d33cdadf12806d75591a";
     private static MessageDigest digester;
 

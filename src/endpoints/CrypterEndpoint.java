@@ -22,17 +22,6 @@ public class CrypterEndpoint {
         gson = new Gson();
         crypter = new Crypter();
     }
-//
-//    /**
-//     * Modtager krypteret data
-//     * @return returnerer dekrypteret data
-//     */
-//    @GET
-//    @Produces("text/plain")
-//
-//    public String xor() {
-//        return Crypter.xor();
-//    }
 
 
     @Path("/getit")

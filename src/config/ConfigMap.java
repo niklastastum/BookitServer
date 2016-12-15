@@ -2,6 +2,8 @@ package config;
 
 public class ConfigMap {
 
+//  Bruges i MyApplication.java
+
   private String dbUserName;
   private String dbPassword;
   private String dbUrl;

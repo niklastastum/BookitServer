@@ -125,24 +125,6 @@ public class BookEndpoint {
 
     }
 
- /*  @POST
-    @Produces("application/json")
-    public Response create(String data) throws Exception {
-        if (controller.addCurriculumBook(data)) {
-            return Response
-                    .status(200)
-                    .entity("{\"message\":\"Success! Book created\"}")
-                    .build();
-        }
-        else {
-            return Response
-                    .status(400)
-                    .entity("{\"message\":\"failed\"}")
-                    .build();
-        }
-    }
-*/
-
     /**
      * Gør det muligt for klienten at slette eksisterende bøger
      * @param authToken Tjekker om klienten sender en access-token med request.

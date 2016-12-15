@@ -1,6 +1,9 @@
 package model;
 
 public class User {
+
+    //    Model klasse for User.
+
     int userID;
     String firstName, lastName, userName, email, password;
     Boolean userType;

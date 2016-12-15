@@ -2,6 +2,8 @@ package config;
 
 public class Config {
 
+//  Bruges bl.a. i DBConnector
+
   private static String dbUserName;
   private static String dbPassword;
   private static String dbUrl;

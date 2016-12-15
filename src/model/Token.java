@@ -5,6 +5,8 @@ package model;
  */
 public class Token {
 
+    //    Model klasse for Token.
+
     private String token;
     private User user;
 

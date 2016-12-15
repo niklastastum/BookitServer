@@ -17,6 +17,10 @@ import java.sql.SQLException;
 // implements IEndpoints The Java class will be hosted at the URI path "/users"
 @Path("/user")
 public class UsersEndpoint  {
+
+    /*De fleste af disse former for metoder er blevet kommenteret i de andre endpoint-klasser
+    * og vil derfor ikke gentages.*/
+
     UserController controller = new UserController();
     TokenController tokenController = new TokenController();
 
@@ -142,14 +146,18 @@ public class UsersEndpoint  {
 
     }
 
+    /*Denne metode håndterer login. Den modtager data fra klienten og
+    * sørger selv for at adskille brugernavn og password fra hinanden, da jeg har
+    * lavet en userLogin-klasse. Hvis brugeren bliver valideret, bliver der sendt en token
+    * retur til brugeren*/
     @POST
     @Path("/login")
     @Produces("application/json")
     public Response login(String data) throws SQLException {
-        String decrypt = Crypter.encryptDecryptXOR(data); //Fjernes når din klient krypterer.
-        decrypt = Crypter.encryptDecryptXOR(decrypt);
+//        String decrypt = Crypter.encryptDecryptXOR(data); //Fjernes når din klient krypterer.
+//        decrypt = Crypter.encryptDecryptXOR(decrypt);
 
-        UserLogin userLogin = new Gson().fromJson(decrypt, UserLogin.class);
+        UserLogin userLogin = new Gson().fromJson(data, UserLogin.class);
         Token token = tokenController.authenticate(userLogin.getUsername(), userLogin.getPassword());
 
         if (token != null) {
@@ -163,6 +171,8 @@ public class UsersEndpoint  {
                 .build();
     }
 
+    /*Dette er logud metoden. Den modtager en token fra klienten. Denne token bliver igennem
+    * TokenController.java sendt til DBConnector og databasen og herigennem slettes denne token i databasen.*/
     @POST
     @Path("/logout")
     public Response logout (String data) throws SQLException {

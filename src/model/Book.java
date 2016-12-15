@@ -2,6 +2,8 @@ package model;
 
 public class Book {
 
+//    Model klasse for Book.
+
     private int bookID;
     private double ISBN;
     private String publisher;

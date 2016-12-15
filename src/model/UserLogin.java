@@ -2,6 +2,8 @@ package model;
 
 public class UserLogin {
 
+    //    Model klasse for UserLogin. Bruges kun til adskillelse af brugernavn og adgangskode v. login
+
     private String username;
     private String password;
 

@@ -130,33 +130,6 @@ public class CurriculumEndpoint {
                 .build();
     }
 
-//    @POST
-//    @Path("/{curriculumID}/book")
-//    @Produces("application/json")
-//
-//    public Response create(@HeaderParam("authorization") String authToken, @PathParam("curriculumID")int curriculumID, String data) throws Exception {
-//
-//        User user = tokenController.getUserFromTokens(authToken);
-//
-//        if (user != null){
-//            String s = new Gson().fromJson(data,String.class);
-//            String decrypt = Crypter.encryptDecryptXOR(s);
-//            if (curriculumController.addCurriculumBook(curriculumID, decrypt)) {
-//                return Response
-//                        .status(200)
-//                        .entity("Success!")
-//                        .build();
-//            }
-//            else {
-//                return Response
-//                        .status(400)
-//                        //nedenstående skal formentlig laves om. Den skal ikke returne curriculums. Lavet for at checke
-//                        //at den skriver til db.
-//                        .build();
-//            }
-//
-//        }else return Response.status(400).entity("{\"message\":\"failed\"}").build();
-//    }
     /**
      * Metode til at ændre et semester
      * @return

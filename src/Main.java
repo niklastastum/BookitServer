@@ -8,6 +8,9 @@ import java.sql.SQLException;
  */
 public class Main {
 
+    /*Denn klasse bliver først kørt efter serveren er igangsat. Det er herfra at
+    * AdminView.java bliver kørt, så admin kan tilgå TUI*/
+
     public static void main (String [] args) {
 
         Config.setDbName("Bookit");

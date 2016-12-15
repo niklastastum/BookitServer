@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 public class BookController {
 
+//    Controller klasse til book. står for at lave kald til databasen.
+//    Forbinder API med databasen. Bedre kendt som logik laget.
+
     public ArrayList<Book> getBooks() throws Exception {
         DBConnector db = new DBConnector();
         ArrayList<Book> books = db.getBooks();
@@ -35,11 +38,4 @@ public class BookController {
         db.close();
         return deleteBook;
     }
-
-   /* public boolean addBook(String data) throws Exception {
-        DBConnector db = new DBConnector();
-        Book b = new Gson().fromJson(data,Book.class);
-        return db.addCurriculumBook(b);
-    }
-*/
 }

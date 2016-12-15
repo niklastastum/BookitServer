@@ -10,6 +10,9 @@ import javax.ws.rs.ext.Provider;
 @Provider
 public class CORSFilter implements ContainerResponseFilter {
 
+    /*Denne klasse bruges til at håndtere CORS. Dette er en nødvendighed når man bruger Glassfish
+    * Nedenstående ses alle former for Access-Control vi muligvis bruger i systemet fra tid til anden*/
+
     @Override
     public void filter(final ContainerRequestContext requestContext,
                        final ContainerResponseContext cres) throws IOException {
